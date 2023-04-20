@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineEmits, defineProps, ref } from 'vue'
+import { ref, watch } from 'vue'
 
 const props = defineProps({
   label: {
@@ -15,13 +15,20 @@ const props = defineProps({
     required: false,
   },
   value: {
-    type: String,
     required: false,
   },
 })
 
 const emit = defineEmits(['input'])
 const internalValue = ref(props.value)
+
+watch(
+  () => props.value,
+  // @ts-ignore
+  (value: string) => {
+    internalValue.value = value
+  }
+)
 
 const updateInternalValue = (value: string) => {
   internalValue.value = value

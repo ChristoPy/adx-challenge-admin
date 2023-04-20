@@ -79,8 +79,17 @@ export default {
           type: 'error',
           singleton: true,
           duration: 3000,
-        }
-      }
-    ]
-  }
+        },
+      },
+      {
+        name: 'update_product_error',
+        message: 'Não foi possível atualizar o produto',
+        options: {
+          type: 'error',
+          singleton: true,
+          duration: 3000,
+        },
+      },
+    ],
+  },
 }

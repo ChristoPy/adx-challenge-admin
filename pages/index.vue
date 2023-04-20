@@ -3,6 +3,7 @@
     <div class="container mx-auto max-w-5xl">
       <h1 class="font-bold text-4xl my-4 py-8">Produtos</h1>
       <ProductsTable />
+      <ModalEdit />
     </div>
   </section>
 </template>

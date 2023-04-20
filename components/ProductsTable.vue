@@ -10,7 +10,11 @@
       </tr>
     </thead>
     <tbody>
-      <ProductTableItem v-for="product of $store.getters['products/products']" :key="product._id" :product="product" />
+      <ProductTableItem
+        v-for="product of $store.getters['products/products']"
+        :key="product._id"
+        :product="product"
+      />
     </tbody>
   </table>
 </template>
