@@ -99,12 +99,17 @@ export default Vue.extend({
             />
             <div class="mt-4 flex justify-end gap-4">
               <GenericButton
+                secondary
+                text="Cancelar"
+                class="mt-4"
+                :on-click="toggle"
+              />
+              <GenericButton
                 type="submit"
                 text="Atualizar"
                 class="mt-4"
                 :on-click="doUpdate"
               />
-              <GenericButton text="Cancelar" class="mt-4" :on-click="toggle" />
             </div>
           </form>
         </div>
