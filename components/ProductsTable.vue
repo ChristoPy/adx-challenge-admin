@@ -2,6 +2,8 @@
   <table class="table-auto w-full shadow-md">
     <thead class="border">
       <tr>
+        <th class="px-4 py-2 text-left w-2"></th>
+        <th class="px-4 py-2 text-left">Imagem</th>
         <th class="px-4 py-2 text-left">Nome</th>
         <th class="px-4 py-2 text-left border">Preço</th>
         <th class="px-4 py-2 text-left">Estoque</th>
