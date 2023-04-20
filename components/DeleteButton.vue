@@ -1,0 +1,46 @@
+<script lang="ts">
+import Vue from 'vue'
+import { Product } from '~/types'
+
+export default Vue.extend({
+  name: 'EditButton',
+  props: {
+    product: {
+      type: Object as () => Product,
+      required: true,
+    },
+  },
+  methods: {
+    onClick() {
+      this.$store.dispatch('admin/startDeleting', this.product)
+      this.$router.push('/#modal-confirm-deletion')
+    },
+  },
+})
+</script>
+
+<template>
+  <button @click="onClick">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-6 h-6 fill-current hover:text-black"
+      viewBox="0 0 24 24"
+      fill="inherit"
+    >
+      <g data-name="Layer 2">
+        <g data-name="trash-2">
+          <rect width="24" height="24" opacity="0"></rect>
+          <path
+            d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4zM18 19a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V8h12z"
+          ></path>
+          <path
+            d="M9 17a1 1 0 0 0 1-1v-4a1 1 0 0 0-2 0v4a1 1 0 0 0 1 1z"
+          ></path>
+          <path
+            d="M15 17a1 1 0 0 0 1-1v-4a1 1 0 0 0-2 0v4a1 1 0 0 0 1 1z"
+          ></path>
+        </g>
+      </g>
+    </svg>
+  </button>
+</template>

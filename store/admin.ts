@@ -3,11 +3,13 @@ import { Product } from '~/types'
 
 interface State {
   toEdit: Product
+  toDelete: Product
 }
 
 export const state = () =>
   ({
     toEdit: {},
+    toDelete: {},
   } as State)
 
 function makeHeaders() {
@@ -23,11 +25,15 @@ export type RootState = ReturnType<typeof state>
 
 export const getters: GetterTree<RootState, RootState> = {
   editing: (state) => state.toEdit,
+  deleting: (state) => state.toDelete,
 }
 
 export const mutations: MutationTree<RootState> = {
   SET_TO_EDIT(state: RootState, product: Product) {
     state.toEdit = product
+  },
+  SET_TO_DELETE(state: RootState, product: Product) {
+    state.toDelete = product
   },
 }
 
@@ -41,6 +47,17 @@ export const actions: ActionTree<RootState, RootState> = {
         .patch(`/products/${product._id}`, product, makeHeaders())
         // @ts-ignore
         .catch(this.$toast.global.update_product_error)
+    )
+  },
+  startDeleting({ commit }, product: Product) {
+    commit('SET_TO_DELETE', product)
+  },
+  deleteProduct(_, product: Product) {
+    return (
+      this.$axios
+        .delete(`/products/${product._id}`, makeHeaders())
+        // @ts-ignore
+        .catch(this.$toast.global.delete_product_error)
     )
   },
 }

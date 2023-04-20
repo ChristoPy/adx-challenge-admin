@@ -90,6 +90,15 @@ export default {
           duration: 3000,
         },
       },
+      {
+        name: 'delete_product_error',
+        message: 'Não foi possível remover o produto',
+        options: {
+          type: 'error',
+          singleton: true,
+          duration: 3000,
+        },
+      },
     ],
   },
 }

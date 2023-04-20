@@ -4,6 +4,7 @@
       <h1 class="font-bold text-4xl my-4 py-8">Produtos</h1>
       <ProductsTable />
       <ModalEdit />
+      <ModalConfirmDeletion />
     </div>
   </section>
 </template>

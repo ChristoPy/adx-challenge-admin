@@ -1,26 +1,21 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Route } from 'vue-router'
-import { Product } from '~/types'
 
 export default Vue.extend({
-  name: 'ModalEdit',
+  name: 'ModalConfirmDeletion',
   data: () => ({
     isOpen: false,
-    newProductData: {} as Product,
   }),
   computed: {
     product() {
-      return this.$store.getters['admin/editing']
+      return this.$store.getters['admin/deleting']
     },
   },
   watch: {
     $route(route: Route) {
-      if (!route.hash || route.hash !== '#modal-edit') return
+      if (!route.hash || route.hash !== '#modal-confirm-deletion') return
       this.toggle()
-    },
-    product() {
-      this.newProductData = { ...this.product }
     },
   },
   methods: {
@@ -32,12 +27,10 @@ export default Vue.extend({
         this.$router.push('/')
       }
     },
-    doUpdate() {
-      this.$store
-        .dispatch('admin/updateProduct', this.newProductData)
-        .then(() => {
-          this.$store.dispatch('products/setProduct', this.newProductData)
-        })
+    doDelete() {
+      this.$store.dispatch('admin/deleteProduct', this.product).then(() => {
+        this.$store.dispatch('products/removeProduct', this.product)
+      })
       this.toggle()
     },
   },
@@ -47,16 +40,16 @@ export default Vue.extend({
 <template>
   <a
     v-show="isOpen"
-    id="#modal-edit"
+    id="#modal-confirm-deletion"
     class="transition transition-all fixed z-50 inset-0 overflow-y-auto"
   >
     <div class="flex items-center justify-center min-h-screen">
       <div class="fixed inset-0 bg-gray-500 opacity-30"></div>
       <div
-        class="container max-w-xl bg-white rounded-lg shadow-lg p-4 relative"
+        class="container max-w-lg bg-white rounded-lg shadow-lg p-4 relative"
       >
         <div class="flex w-full justify-center justify-between">
-          <h3 class="font-bold text-2xl">Editar Produto</h3>
+          <h3 class="font-bold text-2xl">Remover Produto</h3>
           <button @click="toggle">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -81,37 +74,26 @@ export default Vue.extend({
           </button>
         </div>
         <div class="py-4">
-          <form @submit.prevent="() => {}">
-            <GenericInput
-              id="name"
-              v-model="newProductData.name"
-              label="Nome"
-            />
-            <GenericInput
-              id="price"
-              v-model="newProductData.price"
-              label="Preço"
-            />
-            <GenericInput
-              id="quantity"
-              v-model="newProductData.quantity"
-              label="Quantidade"
-            />
-            <div class="mt-4 flex justify-end gap-4">
-              <GenericButton
-                secondary
-                text="Cancelar"
-                class="mt-4"
-                :on-click="toggle"
-              />
-              <GenericButton
-                type="submit"
-                text="Atualizar"
-                class="mt-4"
-                :on-click="doUpdate"
-              />
-            </div>
-          </form>
+          <p class="text-gray-700">
+            Tem certeza que deseja remover o produto
+            <span class="font-bold">{{ product.name }}</span
+            >?
+          </p>
+          <p class="text-gray-700">Esta ação não pode ser desfeita.</p>
+        </div>
+        <div class="mt-4 flex justify-end gap-4">
+          <GenericButton
+            secondary
+            text="Cancelar"
+            class="mt-4"
+            :on-click="toggle"
+          />
+          <GenericButton
+            type="submit"
+            text="Excluir"
+            class="mt-4"
+            :on-click="doDelete"
+          />
         </div>
         <div
           class="absolute inset-0 rounded-lg shadow-lg pointer-events-none z-0"
