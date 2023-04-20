@@ -29,6 +29,8 @@ export default {
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    // @nuxtjs/toast
+    '@nuxtjs/toast',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -66,4 +68,19 @@ export default {
   router: {
     middleware: ['auth'],
   },
+
+  toast: {
+    position: 'bottom-center',
+    register: [
+      {
+        name: 'auth_error',
+        message: 'Usuário ou senha inválidos',
+        options: {
+          type: 'error',
+          singleton: true,
+          duration: 3000,
+        }
+      }
+    ]
+  }
 }

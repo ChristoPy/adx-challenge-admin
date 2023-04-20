@@ -21,21 +21,26 @@ export const mutations: MutationTree<RootState> = {
   SET_ACTIVE(state: RootState, active: boolean) {
     state.active = active
   },
+  SET_TOKEN(state: RootState, token: string) {
+    state.token = token
+  },
 }
 
 export const actions: ActionTree<RootState, RootState> = {
-  login({ commit }) {
+  login({ commit }, { username, password }) {
     this.$axios
-      .post('/auth/login')
+      .post('/auth/login', {
+        username,
+        password,
+      })
       .then((response) => {
         commit('SET_ACTIVE', true)
-        commit('SET_TOKEN', response.data.token)
+        commit('SET_TOKEN', response.data.access_token)
+        this.$router.push('/')
         if (process.client) {
-          localStorage.setItem('token', response.data.token)
+          localStorage.setItem('token', response.data.access_token)
         }
       })
-      .catch((error) => {
-        console.log(error)
-      })
+      .catch(this.$toast.global.auth_error)
   },
 }

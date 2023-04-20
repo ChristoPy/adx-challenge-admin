@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-  <tr class="odd:bg-gray-100">
+  <tr class="odd:bg-gray-100 hover:bg-gray-200">
     <td class="border px-4 py-2">{{ product.name }}</td>
     <td class="border px-4 py-2">{{ formatMoney(product.price) }}</td>
     <td class="border px-4 py-2">{{ product.quantity }}</td>
