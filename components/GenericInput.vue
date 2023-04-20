@@ -13,9 +13,12 @@ const props = defineProps({
   type: {
     type: String,
     required: false,
+    default: 'text',
   },
   value: {
+    type: String || Number,
     required: false,
+    default: '',
   },
 })
 

@@ -35,7 +35,7 @@ export const actions: ActionTree<RootState, RootState> = {
   startEditing({ commit }, product: Product) {
     commit('SET_TO_EDIT', product)
   },
-  async updateProduct({ commit, state }, product: Product) {
+  updateProduct(_, product: Product) {
     return (
       this.$axios
         .patch(`/products/${product._id}`, product, makeHeaders())
