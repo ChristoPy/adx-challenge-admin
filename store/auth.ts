@@ -41,6 +41,7 @@ export const actions: ActionTree<RootState, RootState> = {
           localStorage.setItem('token', response.data.access_token)
         }
       })
+      // @ts-ignore
       .catch(this.$toast.global.auth_error)
   },
 }
