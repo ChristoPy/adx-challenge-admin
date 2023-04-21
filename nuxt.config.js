@@ -65,6 +65,10 @@ export default {
     port: 8081, // default: 3000
   },
 
+  router: {
+    middleware: ['logout'],
+  },
+
   toast: {
     position: 'bottom-center',
     register: [
