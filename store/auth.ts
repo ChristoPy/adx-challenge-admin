@@ -1,4 +1,5 @@
 import { GetterTree, ActionTree, MutationTree } from 'vuex'
+import { makeHeaders } from '~/utils/request'
 
 interface State {
   active: boolean
@@ -44,4 +45,12 @@ export const actions: ActionTree<RootState, RootState> = {
       // @ts-ignore
       .catch(this.$toast.global.auth_error)
   },
+  verify({ commit, state }) {
+    return this.$axios
+      .get('/auth/verify', makeHeaders())
+      .then(() => {
+        commit('SET_ACTIVE', true)
+        commit('SET_TOKEN', localStorage.getItem('token'))
+      })
+  }
 }

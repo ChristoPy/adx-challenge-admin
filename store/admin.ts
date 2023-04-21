@@ -1,5 +1,6 @@
 import { GetterTree, ActionTree, MutationTree } from 'vuex'
 import { Product } from '~/types'
+import { makeHeaders } from '~/utils/request'
 
 interface State {
   toEdit: Product
@@ -11,15 +12,6 @@ export const state = () =>
     toEdit: {},
     toDelete: {},
   } as State)
-
-function makeHeaders() {
-  const token = localStorage.getItem('token')
-  return {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }
-}
 
 export type RootState = ReturnType<typeof state>
 
