@@ -1,5 +1,6 @@
 <template>
   <RouterLink
+    v-if="$store.getters['auth/active']"
     to="/logout"
     class="pl-3 inline-block no-underline hover:text-black"
   >
