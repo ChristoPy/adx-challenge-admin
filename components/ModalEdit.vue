@@ -40,6 +40,9 @@ export default Vue.extend({
         })
       this.toggle()
     },
+    onImageChange(value: string) {
+      this.newProductData.image = value
+    },
   },
 })
 </script>
@@ -101,6 +104,10 @@ export default Vue.extend({
                 type="number"
               />
             </div>
+            <ImageUpload
+              :image-url="newProductData.image"
+              @image-data-url="onImageChange"
+            />
             <div class="mt-4 flex justify-end gap-4">
               <GenericButton
                 secondary

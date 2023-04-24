@@ -59,13 +59,25 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 export default {
   name: 'ImageUpload',
+  props: {
+    imageUrl: String,
+  },
   emits: ['image-data-url'],
-  setup(_, context) {
+  setup(props, context) {
     const imageDataUrl = ref(null)
+
+    watch(
+      () => props.imageUrl,
+      (newValue) => {
+        if (newValue !== imageDataUrl.value) {
+          imageDataUrl.value = newValue
+        }
+      }
+    )
 
     function handleDrop(event) {
       event.preventDefault()
