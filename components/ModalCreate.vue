@@ -19,7 +19,6 @@ export default Vue.extend({
     toggle() {
       const closing = !!this.isOpen
       this.isOpen = !this.isOpen
-
       this.newProductData = {} as Product
       if (closing) {
         this.$router.push('/')
@@ -32,6 +31,9 @@ export default Vue.extend({
           this.$store.dispatch('products/addProduct', product)
         })
       this.toggle()
+    },
+    onImageChange(value: string) {
+      this.newProductData.image = value
     },
   },
 })
@@ -95,6 +97,7 @@ export default Vue.extend({
                 type="number"
               />
             </div>
+            <ImageUpload @image-data-url="onImageChange" />
             <div class="mt-4 flex justify-end gap-4">
               <GenericButton
                 secondary
