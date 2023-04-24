@@ -51,7 +51,7 @@ const updateInternalValue = (value: string) => {
       :value="internalValue"
       required
       :type="type || 'text'"
-      class="w-full border border-black hover:border-gray-700 rounded h-10 px-2"
+      class="w-full border border-emerald hover:border-gray-700 rounded h-10 px-2"
       @input="updateInternalValue($event.target.value)"
     />
   </div>
