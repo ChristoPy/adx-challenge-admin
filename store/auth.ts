@@ -45,7 +45,7 @@ export const actions: ActionTree<RootState, RootState> = {
       // @ts-ignore
       .catch(this.$toast.global.auth_error)
   },
-  async verify({ commit }) {
+  verify({ commit }) {
     return this.$axios.get('/auth/verify', makeHeaders()).then(() => {
       commit('SET_ACTIVE', true)
       commit('SET_TOKEN', localStorage.getItem('token'))

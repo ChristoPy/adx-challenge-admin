@@ -26,6 +26,9 @@ export const mutations: MutationTree<RootState> = {
   REMOVE_PRODUCT(state: RootState, product: Product) {
     state.all = state.all.filter((p) => p._id !== product._id)
   },
+  ADD_PRODUCT(state: RootState, product: Product) {
+    state.all.push(product)
+  },
 }
 
 export const actions: ActionTree<RootState, RootState> = {
@@ -38,5 +41,8 @@ export const actions: ActionTree<RootState, RootState> = {
   },
   removeProduct({ commit }, product: Product) {
     commit('REMOVE_PRODUCT', product)
+  },
+  addProduct({ commit }, product: Product) {
+    commit('ADD_PRODUCT', product)
   },
 }

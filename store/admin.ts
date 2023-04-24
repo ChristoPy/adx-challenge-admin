@@ -5,6 +5,7 @@ import { makeHeaders } from '~/utils/request'
 interface State {
   toEdit: Product
   toDelete: Product
+  creating: Boolean
 }
 
 export const state = () =>
@@ -18,6 +19,7 @@ export type RootState = ReturnType<typeof state>
 export const getters: GetterTree<RootState, RootState> = {
   editing: (state) => state.toEdit,
   deleting: (state) => state.toDelete,
+  creating: (state) => state.toEdit,
 }
 
 export const mutations: MutationTree<RootState> = {
@@ -50,6 +52,15 @@ export const actions: ActionTree<RootState, RootState> = {
         .delete(`/products/${product._id}`, makeHeaders())
         // @ts-ignore
         .catch(this.$toast.global.delete_product_error)
+    )
+  },
+  createProduct(_, product: Product) {
+    return (
+      this.$axios
+        .post(`/products`, product, makeHeaders())
+        .then((res) => res.data)
+        // @ts-ignore
+        .catch(this.$toast.global.create_product_error)
     )
   },
 }

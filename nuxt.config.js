@@ -99,6 +99,15 @@ export default {
           duration: 3000,
         },
       },
+      {
+        name: 'create_product_error',
+        message: 'Não foi possível criar o produto',
+        options: {
+          type: 'error',
+          singleton: true,
+          duration: 3000,
+        },
+      },
     ],
   },
 }
