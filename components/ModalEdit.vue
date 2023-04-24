@@ -87,18 +87,20 @@ export default Vue.extend({
               v-model="newProductData.name"
               label="Nome"
             />
-            <GenericInput
-              id="price"
-              v-model="newProductData.price"
-              label="Preço"
-              type="number"
-            />
-            <GenericInput
-              id="quantity"
-              v-model="newProductData.quantity"
-              label="Quantidade"
-              type="number"
-            />
+            <div class="mt-4 flex justify-end gap-4">
+              <GenericInput
+                id="price"
+                v-model="newProductData.price"
+                label="Preço"
+                type="number"
+              />
+              <GenericInput
+                id="quantity"
+                v-model="newProductData.quantity"
+                label="Quantidade"
+                type="number"
+              />
+            </div>
             <div class="mt-4 flex justify-end gap-4">
               <GenericButton
                 secondary
