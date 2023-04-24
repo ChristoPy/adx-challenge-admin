@@ -16,7 +16,7 @@ const props = defineProps({
     default: 'text',
   },
   value: {
-    type: String || Number,
+    type: [String || Number],
     required: false,
     default: '',
   },
@@ -35,12 +35,16 @@ watch(
 
 const updateInternalValue = (value: string) => {
   internalValue.value = value
+  if (props.type === 'number') {
+    emit('input', Number(value))
+    return
+  }
   emit('input', value)
 }
 </script>
 
 <template>
-  <div class="mb-4">
+  <div class="w-full mb-4">
     <label class="block mb-2" :for="id">{{ label }}</label>
     <input
       :id="id"
