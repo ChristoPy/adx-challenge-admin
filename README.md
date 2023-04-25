@@ -3,12 +3,19 @@
 This project is a small e-commerce system with an administration panel to manage products.  
 The admin panel is developed using the Vue.js and Nuxt framework.
 
+And can be found here: [adx-challenge-admin.vercel.app/](adx-challenge-admin.vercel.app/).
+
 ## Installation
 
 1. Clone the repository
 2. Install dependencies using `npm install`
 3. Run API server using `npm start`
 4. Start the server using `npm run dev`
+5. Login using the credentials below
+```
+username: admin
+password: admin
+```
 
 ## Features
 
