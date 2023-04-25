@@ -64,7 +64,10 @@ import { ref, watch } from 'vue'
 export default {
   name: 'ImageUpload',
   props: {
-    imageUrl: String,
+    imageUrl: {
+      type: String,
+      default: '',
+    }
   },
   emits: ['image-data-url'],
   setup(props, context) {

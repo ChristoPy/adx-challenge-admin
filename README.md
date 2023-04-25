@@ -12,6 +12,7 @@ And can be found here: [adx-challenge-admin.vercel.app/](adx-challenge-admin.ver
 3. Run API server using `npm start`
 4. Start the server using `npm run dev`
 5. Login using the credentials below
+
 ```
 username: admin
 password: admin
