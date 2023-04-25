@@ -67,7 +67,7 @@ export default {
     imageUrl: {
       type: String,
       default: '',
-    }
+    },
   },
   emits: ['image-data-url'],
   setup(props, context) {
